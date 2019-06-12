@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User')
+const Title = require('../../models/Title')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
@@ -10,6 +11,14 @@ router.get('/test',(req,res) => {
     res.json({
         msg: "login sunn"
     })
+})
+
+router.get('/find',async (req,res) => {
+  console.log('sequelize');
+  await Title.findAll()
+              .then( (title) => {
+                console.log('查到的内容',title);
+              })
 })
 
 //注册
