@@ -1,5 +1,6 @@
 var express = require('express');
 let Title = require('./models/Title')
+let title = require('./services/title')
 var app = express();
 
 app.get('/', function(req, res) {
@@ -17,6 +18,11 @@ app.get('/test',async (req,res) => {
               })
             })
     res.send(result)
+})
+
+app.get('/app',async (req,res) => {
+  let ss = await title.all()
+  console.log('ffff',ss);
 })
 
 app.listen(3000)
